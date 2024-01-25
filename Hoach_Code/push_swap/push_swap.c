@@ -18,7 +18,7 @@ and write into stack a
 */
 t_stack	*write_stack(char *str)
 {
-	s_stack	*a;
+	t_stack	*a;
 	char		**ar_str;
 	int		i;
 	int		nbr;
