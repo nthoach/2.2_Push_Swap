@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:41:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/25 13:41:13 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/27 15:57:41 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,22 @@ t_stack	*write2stack(int agc, char **agv)
 		a = write_stack(agv[1]);
 	return (a);
 }
+/*
+	1) put numbers in stack A if no errors
+	2) check if A is sorted, if yes quite program without printing anything
+*/
 
 int	main(int agc, char **agv)
 {
 	t_stack	*a;
 
 	a = write2stack(agc, agv);
-	
 	if (!a || check_invalid(a))
 	{
 		free_stack(a);
 		msg_err();
 	}
-	else if (check_sorted(a))
-		ft_printf("The stack a is already sorted.\n");
-	else	
+	else if (!check_sorted(a))	
 		sort_stack(a);
 	free_stack(a);
 	return (0);
