@@ -1,17 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   1_push_swap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:41:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/27 15:57:41 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/01/28 08:37:55 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	set_index(t_stack *stk_a, int i)
+{
+	while (stk_a)
+	{
+		stk_a->index = i;
+		stk_a = stk_a->next;
+	}
+}
+
+void indexing_stack(t_stack *stk_a)
+{
+	t_stack	*tmp;
+	
+	set_index(stk_a, 1);
+	while (stk_a->next)
+	{
+		tmp = stk_a->next;
+		while (tmp)
+		{
+			if (stk_a->nbr > tmp->nbr)
+				(stk_a->index)++;				
+			else
+				(tmp->index)++;
+			tmp = tmp->next;
+		}
+		stk_a = stk_a->next;		
+	}
+}
 /*
 write_stack function is to converter each ascii in str into relevant number
 and write into stack a
@@ -58,7 +86,7 @@ t_stack	*write2stack(int agc, char **agv)
 		while (i < agc)
 		{
 			nbr = ft_atoi(agv[i]);
-			stack_add_back(&a, stack_new_node(nbr)));
+			stack_add_back(&a, stack_new_node(nbr));
 			i++;
 		}
 	}
@@ -76,6 +104,7 @@ int	main(int agc, char **agv)
 	t_stack	*a;
 
 	a = write2stack(agc, agv);
+	indexing_stack(&a);
 	if (!a || check_invalid(a))
 	{
 		free_stack(a);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:44:05 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/27 20:39:55 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/01/28 08:33:05 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Move to the last node of the stack*/
+/* Move to the last node of the stack */
 t_stack *stack_last(t_stack *lst)
 {
     if (!lst)

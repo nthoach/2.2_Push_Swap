@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min2top.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:43:23 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/27 20:48:10 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/01/28 07:52:05 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,32 @@ rra and ra;
    by selecting the optimal move between: rra x n or ra x m
 */
 
+void  ft_raxn(t_stack **a)
+{
+   while ((*a)->index != 1)
+   {   
+      ft_rra(a, 0);
+      if (check_inv_cons(a))
+         ft_sa(a, 0);
+   }
+}
+
+void  ft_rraxn(t_stack **a)
+{
+   while ((*a)->index != 1)
+   {
+      ft_ra(a, 0);
+      if (check_inv_cons(a))
+         ft_sa(a, 0);
+    }
+}
+
 void    ft_min2top(t_stack **a)
 {
-
+   if (check_inv_cons(a))
+      ft_sa(a, 0);
+   if (index_min(a) <= size_stack(a) / 2 + 1)
+      ft_raxn(a);
+   else
+      ft_rraxn(a);
 }

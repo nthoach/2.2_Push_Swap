@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_inv_cons.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:37:28 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/27 20:39:55 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/01/28 07:44:01 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int check_inv_cons(t_stack **a)
 {
-    
+    if ((*a)->index == (*a)->next->index + 1)
+		return (1);
+	return (0);
 }

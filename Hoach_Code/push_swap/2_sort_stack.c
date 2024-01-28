@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:48:50 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/27 20:35:03 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/01/28 07:48:17 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,11 @@ void    sort_stack(t_stack **a)
 
     stk_b = 0;
     if (size_stack(*a) == 2)
-        ft_sa(a, 0);     
+        ft_sa(a, 0);   
     else
     {
         while (size_stack(*a) > 3)
         {
-            if (check_inv_cons(a))
-            {
-                ft_sa(a, 0);
-                if (check_sorted(*a))
-                    break ;
-            }
             ft_min2top(a);
             if (check_sorted(*a))
                 break ;
@@ -65,7 +59,8 @@ void    sort_stack(t_stack **a)
             if (check_sorted(*a))
                 break ;
         }
-        ft_sort_three(a);
+        if (size_stack(*a) == 3)
+            ft_sort_three(a);
         while (stk_b)
             ft_pa(a, &stk_b, 0);
     }
