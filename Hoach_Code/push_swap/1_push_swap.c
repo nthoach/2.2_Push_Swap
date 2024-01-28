@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 08:48:56 by nthoach           #+#    #+#             */
-/*   Updated: 2024/01/28 08:51:37 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/28 10:17:58 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,14 @@ int	main(int agc, char **agv)
 	t_stack	*a;
 
 	a = write2stack(agc, agv);
-	indexing_stack(&a);
+	indexing_stack(a);
 	if (!a || check_invalid(a))
 	{
-		free_stack(a);
+		free_stack(&a);
 		msg_err();
 	}
 	else if (!check_sorted(a))	
-		sort_stack(a);
-	free_stack(a);
+		sort_stack(&a);
+	free_stack(&a);
 	return (0);
 }

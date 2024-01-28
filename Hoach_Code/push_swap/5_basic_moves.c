@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_moves.c                                      :+:      :+:    :+:   */
+/*   5_basic_moves.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:42:23 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/27 20:51:01 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/01/28 09:33:21 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_ra(t_stack **a, int j)
 	if (!*a || !(*a)->next)
 		return ;
 	tmp = *a;
-	*a = ft_lstlast(*a);
+	*a = stack_last(*a);
 	(*a)->next = tmp;
 	*a = tmp->next;
 	tmp->next = 0;

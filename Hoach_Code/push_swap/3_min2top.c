@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   min2top.c                                          :+:      :+:    :+:   */
+/*   3_min2top.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:43:23 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/28 07:52:05 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/28 10:26:16 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void  ft_raxn(t_stack **a)
 {
    while ((*a)->index != 1)
    {   
-      ft_rra(a, 0);
+      ft_ra(a, 0);
       if (check_inv_cons(a))
          ft_sa(a, 0);
    }
@@ -34,18 +34,18 @@ void  ft_rraxn(t_stack **a)
 {
    while ((*a)->index != 1)
    {
-      ft_ra(a, 0);
+      ft_rra(a, 0);
       if (check_inv_cons(a))
          ft_sa(a, 0);
     }
 }
 
-void    ft_min2top(t_stack **a)
+void    ft_min2top(t_stack **a, int min)
 {
-   if (check_inv_cons(a))
-      ft_sa(a, 0);
-   if (index_min(a) <= size_stack(a) / 2 + 1)
-      ft_raxn(a);
+	if (check_inv_cons(a))
+		ft_sa(a, 0);
+	if (index_min(*a, min) <= size_stack(*a) / 2 + 1)
+		ft_raxn(a);
    else
       ft_rraxn(a);
 }

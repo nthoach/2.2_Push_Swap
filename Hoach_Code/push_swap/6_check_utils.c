@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_utils.c                                      :+:      :+:    :+:   */
+/*   6_check_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:43:27 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/25 17:49:03 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/01/28 09:11:04 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    check_invalid(t_stack *a)
+int   check_invalid(t_stack *a)
 {
 	t_stack *tmp;
 
@@ -30,7 +30,7 @@ void    check_invalid(t_stack *a)
 	return (0);
 }
 
-void    check_sorted(t_stack *a)
+int    check_sorted(t_stack *a)
 {
     	int	i;
 
@@ -43,4 +43,10 @@ void    check_sorted(t_stack *a)
 		a = a->next;
 	}
 	return (1);
+}
+int check_inv_cons(t_stack **a)
+{
+    if ((*a)->index == (*a)->next->index + 1)
+		return (1);
+	return (0);
 }
