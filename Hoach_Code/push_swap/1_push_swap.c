@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 13:41:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/28 08:37:55 by nthoach          ###   ########.fr       */
+/*   Created: 2024/01/28 08:48:56 by nthoach           #+#    #+#             */
+/*   Updated: 2024/01/28 08:51:37 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void indexing_stack(t_stack *stk_a)
 		stk_a = stk_a->next;		
 	}
 }
+
 /*
 write_stack function is to converter each ascii in str into relevant number
 and write into stack a
 */
+
 t_stack	*write_stack(char *str)
 {
 	t_stack	*a;
@@ -71,6 +73,7 @@ t_stack	*write_stack(char *str)
 	or ./push_swap 1 5 7 9 for agc > 2;
 	2) To write into stack a
 */
+
 t_stack	*write2stack(int agc, char **agv)
 {
 	int		i;
@@ -94,6 +97,7 @@ t_stack	*write2stack(int agc, char **agv)
 		a = write_stack(agv[1]);
 	return (a);
 }
+
 /*
 	1) put numbers in stack A if no errors
 	2) check if A is sorted, if yes quite program without printing anything
