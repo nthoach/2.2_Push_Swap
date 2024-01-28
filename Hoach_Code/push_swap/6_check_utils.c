@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:43:27 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/28 09:11:04 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/28 19:08:43 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ int   check_invalid(t_stack *a)
 	return (0);
 }
 
-int    check_sorted(t_stack *a)
+int    check_sorted(t_stack *st_a)
 {
     	int	i;
 
-	i = a->nbr;
-	while (a)
+	i = st_a->nbr;
+	while (st_a)
 	{
-		if (i > a->nbr)
+		if (i > st_a->nbr)
 			return (0);
-		i = a->nbr;
-		a = a->next;
+		i = st_a->nbr;
+		st_a = st_a->next;
 	}
 	return (1);
 }
-int check_inv_cons(t_stack **a)
+int check_inv_cons(t_stack *st)
 {
-    if ((*a)->index == (*a)->next->index + 1)
+    if (st->index == (st->next->index) + 1)
 		return (1);
 	return (0);
 }

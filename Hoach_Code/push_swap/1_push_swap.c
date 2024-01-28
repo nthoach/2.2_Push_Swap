@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   1_push_swap.c                                      :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 08:48:56 by nthoach           #+#    #+#             */
-/*   Updated: 2024/01/28 10:17:58 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/28 19:48:48 by nthoach          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "push_swap.h"
 
@@ -21,23 +21,23 @@ void	set_index(t_stack *stk_a, int i)
 	}
 }
 
-void indexing_stack(t_stack *stk_a)
+void indexing_stack(t_stack *st_a)
 {
 	t_stack	*tmp;
 	
-	set_index(stk_a, 1);
-	while (stk_a->next)
+	set_index(st_a, 1);
+	while (st_a->next)
 	{
-		tmp = stk_a->next;
+		tmp = st_a->next;
 		while (tmp)
 		{
-			if (stk_a->nbr > tmp->nbr)
-				(stk_a->index)++;				
+			if (st_a->nbr > tmp->nbr)
+				(st_a->index)++;				
 			else
 				(tmp->index)++;
 			tmp = tmp->next;
 		}
-		stk_a = stk_a->next;		
+		st_a = st_a->next;		
 	}
 }
 
@@ -105,17 +105,31 @@ t_stack	*write2stack(int agc, char **agv)
 
 int	main(int agc, char **agv)
 {
-	t_stack	*a;
+	t_stack	*st_a;
+	//t_stack	*tmp;//
 
-	a = write2stack(agc, agv);
-	indexing_stack(a);
-	if (!a || check_invalid(a))
+	st_a = write2stack(agc, agv);
+	indexing_stack(st_a);
+	/*
+	tmp = st_a;
+	while (tmp)
 	{
-		free_stack(&a);
+		ft_printf("[%d:%d]", tmp->index, tmp->nbr);
+		tmp = tmp->next;
+	}
+	ft_printf("\n");
+	ft_printf("size[stack]= %d:", size_stack(st_a));
+	ft_printf("index[min]= %d:", index_min(st_a, 1));
+	ft_printf("\n");
+	return (0);
+	*/
+	if (!st_a || check_invalid(st_a))
+	{
+		free_stack(&st_a);
 		msg_err();
 	}
-	else if (!check_sorted(a))	
-		sort_stack(&a);
-	free_stack(&a);
+	else if (!check_sorted(st_a))	
+		sort_stack(&st_a);
+	free_stack(&st_a);
 	return (0);
 }

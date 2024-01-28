@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:44:05 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/28 09:37:25 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/28 18:25:04 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,40 @@ void    stack_add_back(t_stack **a, t_stack *new_node)
 /* size of stack */
 int	size_stack(t_stack *stk)
 {
-	size_t	len;
+	int	len;
+	t_stack	*tmp;
 
 	len = 0;
-	while (stk)
+	tmp = stk;
+	while (tmp)
 	{
-		stk = stk->next;
+		tmp = tmp->next;
 		len++;
 	}
 	return (len);
 }
-int index_min(t_stack *a, int min)
+int index_min(t_stack *st_a, int min)
 {
     int ind;
+	 t_stack	*tmp;
 
     ind = 1;
-    while (a)
+	 tmp = st_a;
+    while (tmp)
     {
-        if (a->index == min)
+        if (tmp->index == min)
             return (ind);
         ind++;
-        a = a->next;
+        tmp = tmp->next;
     }
     return (ind);
+}
+void	stack_printf(t_stack *st_a)
+{
+	while (st_a)
+	{
+		ft_printf("%d:", st_a->index);
+		st_a = st_a->next;
+	}
+	ft_printf("\n");
 }

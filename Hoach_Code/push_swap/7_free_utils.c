@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   7_free_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:43:49 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/25 16:48:53 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/01/28 17:22:17 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,33 @@ void	msg_err(void)
 }
 
 // This function frees the stack.
-void	free_stack(t_stack **stack_a)
+void	free_stack(t_stack **a)
 {
 	t_stack	*tmp;
 
-	if (!stack_a)
+	if (!a)
 		return ;
-	while (*stack_a)
+	while (*a)
 	{
-		tmp = (*stack_a)->next;
-		(*stack_a)->nbr = 0;
-		free(*stack_a);
-		*stack_a = tmp;
+		tmp = (*a)->next;
+		(*a)->nbr = 0;
+		free(*a);
+		*a = tmp;
 	}
 }
 
 // This function free the string array
-void	free_arr(char **ar_str)
+void	free_arr(char **arr_str)
 {
 	char	*n1;
 
-	if (!ar_str)
+	if (!arr_str)
 		return ;
-	while (*ar_str)
+	while (*arr_str)
 	{
-		n1 = *ar_str;
-		ar_str++;
+		n1 = *arr_str;
+		arr_str++;
 		free(n1);
 	}
-	*ar_str = NULL;
+	*arr_str = NULL;
 }

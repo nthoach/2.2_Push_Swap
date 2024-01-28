@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   3_min2top.c                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:43:23 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/28 10:26:16 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/28 19:49:29 by nthoach          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "push_swap.h"
 
@@ -20,32 +20,33 @@ rra and ra;
    by selecting the optimal move between: rra x n or ra x m
 */
 
-void  ft_raxn(t_stack **a)
+void  ft_raxn(t_stack **a, int min)
 {
-   while ((*a)->index != 1)
+   while ((*a)->index != min)
    {   
-      ft_ra(a, 0);
-      if (check_inv_cons(a))
+		ft_ra(a, 0);
+      if (check_inv_cons(*a))
          ft_sa(a, 0);
    }
 }
-
-void  ft_rraxn(t_stack **a)
+void  ft_rraxn(t_stack **a, int min)
 {
-   while ((*a)->index != 1)
+   
+	while ((*a)->index != min)
    {
-      ft_rra(a, 0);
-      if (check_inv_cons(a))
+		ft_rra(a, 0);
+	   if (check_inv_cons(*a))
          ft_sa(a, 0);
-    }
+	}
+	
 }
 
 void    ft_min2top(t_stack **a, int min)
 {
-	if (check_inv_cons(a))
+	if (check_inv_cons(*a))
 		ft_sa(a, 0);
 	if (index_min(*a, min) <= size_stack(*a) / 2 + 1)
-		ft_raxn(a);
+		ft_raxn(a, min);
    else
-      ft_rraxn(a);
+      ft_rraxn(a, min);
 }

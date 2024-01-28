@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:48:50 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/28 10:42:15 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/28 18:15:59 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	ft_sort_three(t_stack **a)
 {
 	bool cmp1;
-    bool cmp2;
-    bool cmp3;
+   bool cmp2;
+   bool cmp3;
     
-    cmp1 = (*a)->nbr < (*a)->next->nbr;
-    cmp2 = (*a)->next->nbr < (*a)->next->next->nbr;
-    cmp3 = (*a)->next->next->nbr < (*a)->nbr;
-    if (cmp1 && !cmp2 && !cmp3)
+   cmp1 = (*a)->nbr < (*a)->next->nbr;
+   cmp2 = (*a)->next->nbr < (*a)->next->next->nbr;
+   cmp3 = (*a)->next->next->nbr < (*a)->nbr;
+   if (cmp1 && !cmp2 && !cmp3)
 	{
 		ft_sa(a, 0);
 		ft_ra(a, 0);
@@ -38,15 +38,13 @@ void	ft_sort_three(t_stack **a)
 		ft_sa(a, 0);
 	} 
 }
-  
-
 void    sort_stack(t_stack **a)
 {
-    t_stack *stk_b;
-    int     min;
+    t_stack *st_b;
+    long     min;
 
     min = 1;
-    stk_b = 0;
+    st_b = 0;
     if (size_stack(*a) == 2)
         ft_sa(a, 0);   
     else
@@ -56,16 +54,14 @@ void    sort_stack(t_stack **a)
 				ft_min2top(a, min);
 				if (check_sorted(*a))
 					break ;
-            ft_pb(a, &stk_b, 0);
+            ft_pb(a, &st_b, 0);
             if (check_sorted(*a))
                 break ;
-				ft_printf("min=%d:\n", min);//
-				ft_printf("stack_b=%d:\n", stk_b->nbr);//
 				min++;
         }
         if (size_stack(*a) == 3)
             ft_sort_three(a);
-        while (stk_b)
-            ft_pa(a, &stk_b, 0);
+        while (st_b)
+            ft_pa(a, &st_b, 0);
     }
 }
