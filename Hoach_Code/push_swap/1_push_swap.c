@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   1_push_swap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 08:48:56 by nthoach           #+#    #+#             */
-/*   Updated: 2024/01/28 19:48:48 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/29 15:17:02 by honguyen         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -106,23 +106,9 @@ t_stack	*write2stack(int agc, char **agv)
 int	main(int agc, char **agv)
 {
 	t_stack	*st_a;
-	//t_stack	*tmp;//
 
 	st_a = write2stack(agc, agv);
 	indexing_stack(st_a);
-	/*
-	tmp = st_a;
-	while (tmp)
-	{
-		ft_printf("[%d:%d]", tmp->index, tmp->nbr);
-		tmp = tmp->next;
-	}
-	ft_printf("\n");
-	ft_printf("size[stack]= %d:", size_stack(st_a));
-	ft_printf("index[min]= %d:", index_min(st_a, 1));
-	ft_printf("\n");
-	return (0);
-	*/
 	if (!st_a || check_invalid(st_a))
 	{
 		free_stack(&st_a);
