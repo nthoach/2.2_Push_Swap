@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   7_free_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:43:49 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/28 17:22:17 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/29 19:02:21 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Print an error message
 void	msg_err(void)
 {	
-	write (2, "Error\n", 6);
+	write (STDERR_FILENO, "Error\n", 6);
 	exit(1);
 }
 
