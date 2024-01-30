@@ -1,38 +1,51 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
+#    By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/28 19:58:59 by nthoach           #+#    #+#              #
-#    Updated: 2024/01/29 18:20:24 by honguyen         ###   ########.fr        #
+#    Created: 2023/12/25 13:18:39 by honguyen          #+#    #+#              #
+#    Updated: 2024/01/30 22:10:32 by nthoach          ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
-CC = gcc -Wall -Wextra -Werror
-PUSH = push_swap
+NAME = push_swap
+BONUS = checker
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+RM = rm -rf
+LIBFT = ../libft/libft.a
 
-SRCS_PATH = ./
-SRCS_FILES = 1_push_swap.c 2_sort_stack_V1.c 3_optimal_rotation.c 4_apply_rotation.c 5_basic_moves.c 6_check_utils.c 7_free_utils.c 8_stack_utils.c 
-SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
+SRC = 1_push_swap.c 2_sort_stack_V1.c 3_optimal_rotation.c \
+		4_apply_rotation 5_basic_moves.c 6_check_utils.c \
+		7_free_utils.c 8_stack_utils.c 
+SRC_BONUS = 9_checker.c 
 
-LIB_PATH = ../libft/
-LIB = ../libft/libft.a
-HEADER = -I ./ -I ../libft/
+OBJ = ${SRC:.c=.o}
+OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
-all:$(LIB) $(PUSH)
+all: $(NAME)
 
-$(LIB):
-	@make -C $(LIB_PATH)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
+	$(info CREATED $@)
 
-$(PUSH):
-	@$(CC) $(SRCS) $(LIB) $(HEADER) -o $(PUSH)
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $< ../libft/libft.a -o $@
+	$(info CREATED $(NAME))
+	@echo "\033[34;5mpushswap\033[0m"
+
+$(LIBFT):
+	make -C ../libft
 
 clean:
-	@make fclean -C $(LIB_PATH)
+	$(RM) $(OBJ)
+	make -C ../libft clean
 
-fclean:clean
-	@/bin/rm -f $(PUSH)
+fclean: clean
+	$(RM) $(NAME) $(LIBFT)
 
-re:fclean all
+re: fclean all
+
+.PHONY: all clean fclean re

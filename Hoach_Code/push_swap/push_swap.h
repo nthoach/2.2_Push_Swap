@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:33:31 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/29 18:40:19 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/01/30 22:00:55 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int			size_stack(t_stack *stk);
 int			index_min(t_stack *a, int min);
 int			ft_min(t_stack *a);
 int			ft_max(t_stack *a);
-void		stack_printf(t_stack *st_a);//
+void	apply_move(t_stack **a, t_stack **b, char	*mv);
+void	check_pushswap(t_stack	**a, char *mv);
 #endif
