@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:33:31 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/30 22:00:55 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/31 20:55:54 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,59 +21,64 @@
 
 typedef struct s_stack
 {
-	long		nbr;
-	long		index;
-	struct s_stack	*prev;
+	long			nbr;
+	long			index;
 	struct s_stack	*next;
 }	t_stack;
 
-void		set_index(t_stack *stk_a, int i);
-void		indexing_stack(t_stack *stk_a);
-t_stack		*write_stack(char *str);
-t_stack		*write2stack(int agc, char **agv);
-void		ft_sort_three(t_stack **a);
-void    	sort_stack(t_stack **a);
-t_stack		**ft_sort_a(t_stack **a, t_stack **b);
-int	ft_case_rarb_a(t_stack *a, t_stack *b, int c);
-int	ft_case_rrarrb_a(t_stack *a, t_stack *b, int c);
-int	ft_case_rarrb_a(t_stack *a, t_stack *b, int c);
-int	ft_case_rrarb_a(t_stack *a, t_stack *b, int c);
-int	ft_rotate_type_ba(t_stack *a, t_stack *b);
-int	ft_find_index(t_stack *a, int nbr);
-int	ft_find_place_b(t_stack *stack_b, int nbr_push);
-int	ft_find_place_a(t_stack *stack_a, int nbr_push);
-int	ft_apply_rarb(t_stack **a, t_stack **b, int c, char s);
-int	ft_apply_rrarrb(t_stack **a, t_stack **b, int c, char s);
-int	ft_apply_rrarb(t_stack **a, t_stack **b, int c, char s);
-int	ft_apply_rarrb(t_stack **a, t_stack **b, int c, char s);
-void  		ft_raxn(t_stack **a, int min);
-void  		ft_rraxn(t_stack **a, int min);
-void		ft_min2top(t_stack **a, int min);
-void		ft_sa(t_stack **a, int j);
-void		ft_sb(t_stack **b, int j);
-void		ft_ss(t_stack **a, t_stack **b, int j);
-void		ft_pa(t_stack **a, t_stack **b, int j);
-void		ft_pb(t_stack **a, t_stack **b, int j);
-void		ft_ra(t_stack **a, int j);
-void		ft_rb(t_stack **b, int j);
-void		ft_rr(t_stack **a, t_stack **b, int j);
-void		ft_rra(t_stack **a, int j);
-void		ft_rrb(t_stack **b, int j);
-void		ft_rrr(t_stack **a, t_stack **b, int j);
-void		ft_rrr_sub(t_stack **b, int j);
-int  		check_invalid(t_stack *a);
-int			check_sorted(t_stack *a);
-int			check_inv_cons(t_stack *st);
-void		msg_err(void);
-void		free_stack(t_stack **stack_a);
-void		free_arr(char **ar_str);
-t_stack		*stack_last(t_stack *lst);
-t_stack		*stack_new_node(int  nbr);
-void		stack_add_back(t_stack **a, t_stack *new_node);
-int			size_stack(t_stack *stk);
-int			index_min(t_stack *a, int min);
-int			ft_min(t_stack *a);
-int			ft_max(t_stack *a);
-void	apply_move(t_stack **a, t_stack **b, char	*mv);
-void	check_pushswap(t_stack	**a, char *mv);
+void	fn_apply_move(t_stack **a, t_stack **b, char	*mv);
+void	fn_check(t_stack	**a, char *mv);
+
+t_stack	*fn_writestack(int agc, char **agv);
+t_stack	*fn_writestack2(int agc, char **agv, t_stack **a);
+t_stack	*fn_writestack1(char *str);
+void	fn_index_stack(t_stack *st_a);
+void	fn_set_index(t_stack *stk_a, long i);
+
+void	fn_sort(t_stack **a);
+t_stack	**fn_best_pusha(t_stack **a, t_stack **b);
+void	fn_sort_three(t_stack **a);
+
+int		fn_best_rotate(t_stack *a, t_stack *b);
+int		fn_rr_pa(t_stack *a, t_stack *b, int c);
+int		fn_rrr_pa(t_stack *a, t_stack *b, int c);
+int		fn_rarrb_pa(t_stack *a, t_stack *b, int c);
+int		fn_rrarb_pa(t_stack *a, t_stack *b, int c);
+
+int		fn_apply_rarrb(t_stack **a, t_stack **b, int c, char s);
+int		fn_apply_rrarb(t_stack **a, t_stack **b, int c, char s);
+int		fn_apply_rrr(t_stack **a, t_stack **b, int c, char s);
+int		fn_apply_rr(t_stack **a, t_stack **b, int c, char s);
+
+int		fn_checkduplicate(t_stack *st_a);
+int		fn_checksorted(t_stack *st_a);
+
+void	msg_err(void);
+void	fn_freestack(t_stack **a);
+void	fn_freearr(char **arr_str);
+
+void	fn_sa(t_stack **a, int j);
+void	fn_sb(t_stack **b, int j);
+void	fn_ss(t_stack **a, t_stack **b, int j);
+void	fn_pa(t_stack **a, t_stack **b, int j);
+void	fn_pb(t_stack **a, t_stack **b, int j);
+void	fn_ra(t_stack **a, int j);
+void	fn_rb(t_stack **b, int j);
+void	fn_rr(t_stack **a, t_stack **b, int j);
+void	fn_rra(t_stack **a, int j);
+void	fn_rrb(t_stack **b, int j);
+void	fn_rrr(t_stack **a, t_stack **b, int j);
+
+int		fn_findmin(t_stack *st_a);
+int		fn_findmax(t_stack *st_a);
+t_stack	*fn_move2last(t_stack *st_a);
+t_stack	*fn_newnode(int nbr);
+void	fn_add2last(t_stack **a, t_stack *new_node);
+size_t		fn_size(t_stack *st_a);
+int		fn_findlocation(t_stack *st_a, int idx);
+int		fn_find_loc(t_stack *st_a, int nbr);
+int		fn_find_loc_b(t_stack *st_b, int nbr_push);
+int		fn_find_loc_a(t_stack *st_a, int nbr_push);
+
+
 #endif

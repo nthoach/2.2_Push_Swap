@@ -1,51 +1,54 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+         #
+#    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/25 13:18:39 by honguyen          #+#    #+#              #
-#    Updated: 2024/01/30 22:10:32 by nthoach          ###   ########.fr        #
+#    Updated: 2024/01/31 20:53:25 by honguyen         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 NAME = push_swap
 BONUS = checker
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
-LIBFT = ../libft/libft.a
+LIBFTA = ../libft/libft.a
 
-SRC = 1_push_swap.c 2_sort_stack_V1.c 3_optimal_rotation.c \
-		4_apply_rotation 5_basic_moves.c 6_check_utils.c \
-		7_free_utils.c 8_stack_utils.c 
-SRC_BONUS = 9_checker.c 
+SRC_PS = 0_push_swap.c 
+SRC_BONUS = 0_checker.c 
+SRC_FN = 1_write_stack.c  2_sort.c 3_optimal_rotation.c 3_apply_rotation.c \
+		4_check_utils.c 4_free_utils.c 5_basic_moves_1.c 5_basic_moves_2.c \
+		5_basic_moves_3.c 5_stack_utils_1.c 5_stack_utils_2.c 
 
-OBJ = ${SRC:.c=.o}
+OBJ_PS = ${SRC_PS:.c=.o}
 OBJ_BONUS = ${SRC_BONUS:.c=.o}
-
-all: $(NAME)
+OBJ_FN = ${SRC_FN:.c=.o}
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
-	$(info CREATED $@)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $< ../libft/libft.a -o $@
-	$(info CREATED $(NAME))
-	@echo "\033[34;5mpushswap\033[0m"
-
-$(LIBFT):
+$(NAME): $(OBJ_PS) $(OBJ_FN)
 	make -C ../libft
+	$(CC) $(CFLAGS) $(OBJ_PS) $(OBJ_FN) $(LIBFTA) -o $@
+
+${BONUS}: ${OBJ_FN} ${OBJ_BONUS} 
+	make -C ../libft
+	${CC} ${FLAGS} ${OBJ_BONUS} ${OBJ_FN} $(LIBFTA) -o $@
+
+all: $(NAME)
+
+bonus: $(BONUS)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ_PS) $(OBJ_FN) $(OBJ_BONUS)
 	make -C ../libft clean
 
 fclean: clean
-	$(RM) $(NAME) $(LIBFT)
+	$(RM) $(NAME) $(BONUS) $(LIBFTA)
 
-re: fclean all
+re: fclean all bonus
 
 .PHONY: all clean fclean re
