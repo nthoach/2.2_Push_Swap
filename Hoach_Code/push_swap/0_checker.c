@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:01:08 by nthoach           #+#    #+#             */
-/*   Updated: 2024/02/01 23:26:36 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/02/02 00:00:13 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -42,21 +42,20 @@ void	fn_apply_move(t_stack **a, t_stack **b, char	*mv)
 
 void	fn_check(t_stack	**a, char *mv)
 {
-	t_stack	**b;
+	t_stack	*st_b;
 	int	size_a;
 	char	*mv_fr;
 
 	size_a = fn_size(*a);
-	b = NULL;
+	st_b = NULL;
 	while (mv && *mv != '\n')
 	{
 		mv_fr = mv;
-		fn_apply_move(a, b, mv);
+		fn_apply_move(a, &st_b, mv);
 		mv = get_next_line(STDIN_FILENO);
 		free(mv_fr);
 	}
-	free(mv);
-	if (!(*b) && fn_checksorted(*a) && size_a == fn_size(*a))
+	if (!(st_b) && fn_checksorted(*a) && size_a == fn_size(*a))
 		write(STDOUT_FILENO, "OK\n", 3);
 	else
 		write(STDOUT_FILENO, "KO\n", 3);
@@ -68,7 +67,7 @@ int	main(int agc, char **agv)
 	char	*mv;
 
 	st_a = fn_writestack(agc, agv);
-	fn_index_stack(st_a);
+	//fn_index_stack(st_a);
 	if (!st_a || fn_checkduplicate(st_a))
 	{
 		fn_freestack(&st_a);
