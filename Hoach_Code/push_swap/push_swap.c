@@ -1,37 +1,36 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_push_swap.c                                      :+:      :+:    :+:   */
+/*   1_push_swap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 08:48:56 by nthoach           #+#    #+#             */
-/*   Updated: 2024/02/01 23:33:35 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/01/30 22:48:14 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "push_swap.h"
 
 /*
-	1) read input and write to stack A
-	2) check validity: duplicate/NULL
-	3) check if not sorted -> sorted/ or do nothing
+	1) write input to stack a (*st_a)
+	2) check stack_a is valid/duplicate/sorted
+	3) do the sorting
 */
 
 int	main(int agc, char **agv)
 {
 	t_stack	*st_a;
 
-	st_a = fn_writestack(agc, agv);
-	fn_index_stack(st_a);
-	if (!st_a || fn_checkduplicate(st_a))
+	st_a = write2stack(agc, agv);
+	//indexing_stack(st_a);
+	if (!st_a || check_invalid(st_a))
 	{
-		fn_freestack(&st_a);
+		free_stack(&st_a);
 		msg_err();
-		return (-1);
 	}
-	else if (!fn_checksorted(st_a))
-		fn_sort(&st_a);
-	fn_freestack(&st_a);
+	else if (!check_sorted(st_a))	
+		sort_stack(&st_a);
+	free_stack(&st_a);
 	return (0);
 }

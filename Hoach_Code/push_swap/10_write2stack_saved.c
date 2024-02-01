@@ -1,18 +1,16 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_write_stack.c                                    :+:      :+:    :+:   */
+/*   1_write2stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 16:34:24 by honguyen          #+#    #+#             */
-/*   Updated: 2024/02/01 23:13:22 by nthoach          ###   ########.fr       */
+/*   Created: 2024/01/30 22:47:44 by nthoach           #+#    #+#             */
+/*   Updated: 2024/02/01 23:01:25 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "push_swap.h"
-
-/* This function sets the index for each node is ONE*/
 
 void	fn_set_index(t_stack *stk_a, size_t i)
 {
@@ -23,36 +21,35 @@ void	fn_set_index(t_stack *stk_a, size_t i)
 	}
 }
 
-/* This function assigns index to each number from
-   min (1) to max (size of stactk) */
-
-void	fn_index_stack(t_stack *st_a)
+void fn_index_stack(t_stack *st_a)
 {
 	t_stack	*tmp;
-
-	fn_set_index(st_a, 0);
+	
+	fn_set_index(st_a, 1);
 	while (st_a->next)
 	{
 		tmp = st_a->next;
 		while (tmp)
 		{
 			if (st_a->nbr > tmp->nbr)
-				st_a->index++;				
+				(st_a->index)++;				
 			else
-				tmp->index++;
+				(tmp->index)++;
 			tmp = tmp->next;
 		}
 		st_a = st_a->next;		
 	}
 }
 
-/* write_stack function is to converter each ascii in str 
-	into relevant number and write into stack a */
+/*
+write_stack function is to converter each ascii in str into relevant number
+and write into stack a
+*/
 
-t_stack	*fn_writestack1(char *str)
+t_stack	*write_stack(char *str)
 {
 	t_stack	*a;
-	char	**ar_str;
+	char		**ar_str;
 	int		i;
 	int		nbr;
 
@@ -62,45 +59,41 @@ t_stack	*fn_writestack1(char *str)
 	while (ar_str[i])
 	{
 		nbr = ft_atoi(ar_str[i]);
-		fn_add2last(&a, fn_newnode(nbr));
+		stack_add_back(&a, stack_new_node(nbr));
 		i++;
 	}
-	fn_freearr(ar_str);
+	free_arr(ar_str);
 	free(ar_str);
 	return (a);
 }
 
-t_stack	*fn_writestack2(int agc, char **agv, t_stack **a)
-{
-	int		i;
-	int		nbr;
-
-	i = 1;
-	while (i < agc)
-	{
-		nbr = ft_atoi(agv[i]);
-		fn_add2last(a, fn_newnode(nbr));
-		i++;
-	}
-	return (*a);
-}
 /*
 	The main program accepts two kinds of input:
-	1) ./push_swap "1 5 7 9" for agc = 2, --> fn_writestack1 
-	or ./push_swap 1 5 7 9 for agc > 2; ->fn_writestack2
+	1) ./push_swap "1 5 7 9" for agc = 2, 
+	or ./push_swap 1 5 7 9 for agc > 2;
 	2) To write into stack a
 */
 
-t_stack	*fn_writestack(int agc, char **agv)
+t_stack	*write2stack(int agc, char **agv)
 {
-	t_stack	*st_a;
-
-	st_a = NULL;
+	int		i;
+	int		nbr;
+	t_stack	*a;
+	
+	a = NULL;
 	if (agc < 2)
 		msg_err();
-	else if (agc == 2)
-		st_a = fn_writestack1(agv[1]);
+	else if (agc > 2)
+	{
+		i = 1;
+		while (i < agc)
+		{
+			nbr = ft_atoi(agv[i]);
+			stack_add_back(&a, stack_new_node(nbr));
+			i++;
+		}
+	}
 	else
-		st_a = fn_writestack2(agc, agv, &st_a);
-	return (st_a);
+		a = write_stack(agv[1]);
+	return (a);
 }

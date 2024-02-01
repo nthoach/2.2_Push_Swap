@@ -1,22 +1,22 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   5_stack_utils_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:51:14 by honguyen          #+#    #+#             */
-/*   Updated: 2024/01/31 20:55:41 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:41:36 by nthoach          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "push_swap.h"
 
 /* size of stack */
 
-size_t	fn_size(t_stack *st_a)
+int	fn_size(t_stack *st_a)
 {
-	size_t		len;
+	int		len;
 
 	len = 0;
 	while (st_a)
@@ -48,7 +48,7 @@ int	fn_findlocation(t_stack *st_a, int idx)
 
 int	fn_find_loc(t_stack *st_a, int nbr)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (st_a->nbr != nbr)
@@ -56,7 +56,6 @@ int	fn_find_loc(t_stack *st_a, int nbr)
 		i++;
 		st_a = st_a->next;
 	}
-	st_a->index = 0;
 	return (i);
 }
 
@@ -87,9 +86,8 @@ int	fn_find_loc_b(t_stack *st_b, int nbr_push)
 	return (i);
 }
 
-// This function finds the correct place of the number in stack_a.
-// In other words, it check what index number nbr_push will get 
-// after it is being pushed to the stack_a.
+// This caculates the number of ra moves to push nbr_push from b
+// the result will be a sorted a but in circular arrangment
 
 int	fn_find_loc_a(t_stack *st_a, int nbr_push)
 {
