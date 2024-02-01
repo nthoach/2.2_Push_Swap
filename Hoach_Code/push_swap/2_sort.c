@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:48:50 by honguyen          #+#    #+#             */
-/*   Updated: 2024/02/01 23:44:49 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/02/02 01:22:57 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -84,7 +84,8 @@ void	fn_sort(t_stack **a)
 		while (fn_size(*a) > 3 && !fn_checksorted(*a))
 		{
 			fn_pb(a, &st_b, 0);
-			if ((*a)->index == (*a)->next->index - 1)
+			if ((*a)->index == (*a)->next->index - 1 &&
+				((st_b)->next && (st_b)->index == (st_b)->next->index + 1))
 				fn_ss(a, &st_b, 0);
 		}
 		if (!fn_checksorted(*a))

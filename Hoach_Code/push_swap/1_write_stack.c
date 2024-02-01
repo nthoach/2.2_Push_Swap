@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:34:24 by honguyen          #+#    #+#             */
-/*   Updated: 2024/02/01 23:13:22 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/02/02 00:56:12 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -46,6 +46,31 @@ void	fn_index_stack(t_stack *st_a)
 	}
 }
 
+int	ft_atoi_ps(const char *str)
+{
+	int			sign;	
+	long long	value;
+
+	value = 0;
+	sign = 1;
+	while (*str == 32 || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str)
+	{
+		if (*str > '9' || *str < '0')
+			msg_err();
+		value = value * 10 + sign * (*str - '0');
+		if ((sign * value) > INT32_MAX || (sign * value) < INT32_MIN)
+			msg_err();
+		str++;
+	}
+	return (value);
+}
+
 /* write_stack function is to converter each ascii in str 
 	into relevant number and write into stack a */
 
@@ -61,7 +86,7 @@ t_stack	*fn_writestack1(char *str)
 	ar_str = ft_split(str, ' ');
 	while (ar_str[i])
 	{
-		nbr = ft_atoi(ar_str[i]);
+		nbr = ft_atoi_ps(ar_str[i]);
 		fn_add2last(&a, fn_newnode(nbr));
 		i++;
 	}
@@ -78,7 +103,7 @@ t_stack	*fn_writestack2(int agc, char **agv, t_stack **a)
 	i = 1;
 	while (i < agc)
 	{
-		nbr = ft_atoi(agv[i]);
+		nbr = ft_atoi_ps(agv[i]);
 		fn_add2last(a, fn_newnode(nbr));
 		i++;
 	}
@@ -97,7 +122,7 @@ t_stack	*fn_writestack(int agc, char **agv)
 
 	st_a = NULL;
 	if (agc < 2)
-		msg_err();
+		return (NULL);
 	else if (agc == 2)
 		st_a = fn_writestack1(agv[1]);
 	else

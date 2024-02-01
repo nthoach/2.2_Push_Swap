@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:33:31 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/01 23:25:00 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/02/02 00:45:34 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,6 +32,7 @@ void		fn_check(t_stack	**a, char *mv);
 t_stack	*fn_writestack(int agc, char **agv);
 t_stack	*fn_writestack2(int agc, char **agv, t_stack **a);
 t_stack	*fn_writestack1(char *str);
+int		ft_atoi_ps(const char *str);
 void		fn_index_stack(t_stack *st_a);
 void		fn_set_index(t_stack *st_a, size_t i);
 
