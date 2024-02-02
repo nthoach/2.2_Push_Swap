@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:01:08 by nthoach           #+#    #+#             */
-/*   Updated: 2024/02/02 09:37:05 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:56:16 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,13 @@ int	main(int agc, char **agv)
 	char	*mv;
 
 	st_a = fn_writestack(agc, agv);
-	if (!st_a || fn_checkduplicate(st_a))
+	if (!st_a)
+		return (0);
+	if (fn_checkduplicate(st_a))
 	{
 		fn_freestack(&st_a);
 		msg_err();
+		return (-1);
 	}
 	mv = get_next_line(STDIN_FILENO);
 	if (!mv && fn_checksorted(st_a))

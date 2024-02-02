@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:34:24 by honguyen          #+#    #+#             */
-/*   Updated: 2024/02/02 09:53:49 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:14:16 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,21 @@ t_stack	*fn_writestack2(int agc, char **agv, t_stack **a)
 {
 	int		i;
 	int		nbr;
+	char	**arr_str;
+	int		j;
 
 	i = 1;
 	while (i < agc)
 	{
-		nbr = ft_atoi_ps(agv[i]);
-		fn_add2last(a, fn_newnode(nbr));
+		arr_str = ft_split(agv[i], ' ');
+		j = 0;
+		while (arr_str[j])
+		{
+			nbr = ft_atoi_ps(arr_str[j]);
+			fn_add2last(a, fn_newnode(nbr));
+			j++;
+		}
+		fn_freearr(arr_str);
 		i++;
 	}
 	return (*a);
