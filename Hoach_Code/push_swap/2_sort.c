@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   2_sort.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:48:50 by honguyen          #+#    #+#             */
-/*   Updated: 2024/02/02 01:22:57 by nthoach          ###   ########.fr       */
+/*   Created: 2024/02/02 09:47:01 by honguyen          #+#    #+#             */
+/*   Updated: 2024/02/02 09:53:06 by honguyen         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -58,7 +58,7 @@ t_stack	**fn_best_pusha(t_stack **a, t_stack **b)
 			if (i == fn_rr_pa(*a, *b, tmp->nbr))
 				i = fn_apply_rr(a, b, tmp->nbr);
 			else if (i == fn_rrr_pa(*a, *b, tmp->nbr))
-				i = fn_apply_rrr(a, b, tmp->nbr);				
+				i = fn_apply_rrr(a, b, tmp->nbr);
 			else if (i == fn_rarrb_pa(*a, *b, tmp->nbr))
 				i = fn_apply_rarrb(a, b, tmp->nbr);
 			else if (i == fn_rrarb_pa(*a, *b, tmp->nbr))
@@ -69,12 +69,25 @@ t_stack	**fn_best_pusha(t_stack **a, t_stack **b)
 	}
 	return (a);
 }
-// && ((*b)->next && (*b)->index == (*b)->next->index + 1)
+
+/* rototate the arranged stack a to put the min on top */
+
+void	fn_rotate_a(t_stack **a)
+{
+	int	i;
+
+	i = fn_find_loc(*a, fn_findmin(*a));
+	if (i < fn_size(*a) - i)
+		while ((*a)->index != 0)
+			fn_ra(a, 0);
+	else
+		while ((*a)->index != 0)
+			fn_rra(a, 0);
+}
 
 void	fn_sort(t_stack **a)
 {
 	t_stack	*st_b;
-	int		i;
 
 	st_b = NULL;
 	if (fn_size(*a) == 2)
@@ -84,24 +97,14 @@ void	fn_sort(t_stack **a)
 		while (fn_size(*a) > 3 && !fn_checksorted(*a))
 		{
 			fn_pb(a, &st_b, 0);
-			if ((*a)->index == (*a)->next->index - 1 &&
-				((st_b)->next && (st_b)->index == (st_b)->next->index + 1))
+			if ((*a)->index == (*a)->next->index - 1
+				&& ((st_b)->next && (st_b)->index == (st_b)->next->index + 1))
 				fn_ss(a, &st_b, 0);
 		}
 		if (!fn_checksorted(*a))
 			fn_sort_three(a);
 		if (st_b)
 			fn_best_pusha(a, &st_b);
-		i = fn_find_loc(*a, fn_findmin(*a));
-		if (i < fn_size(*a) - i)
-		{
-			while ((*a)->index != 0)
-				fn_ra(a, 0);
-		}
-		else
-		{
-			while ((*a)->index != 0)
-				fn_rra(a, 0);
-		}
+		fn_rotate_a(a);
 	}
 }

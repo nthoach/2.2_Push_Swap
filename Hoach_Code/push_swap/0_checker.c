@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   0_checker.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:01:08 by nthoach           #+#    #+#             */
-/*   Updated: 2024/02/02 00:00:13 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/02/02 09:37:05 by honguyen         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -43,7 +43,7 @@ void	fn_apply_move(t_stack **a, t_stack **b, char	*mv)
 void	fn_check(t_stack	**a, char *mv)
 {
 	t_stack	*st_b;
-	int	size_a;
+	int		size_a;
 	char	*mv_fr;
 
 	size_a = fn_size(*a);
@@ -67,7 +67,6 @@ int	main(int agc, char **agv)
 	char	*mv;
 
 	st_a = fn_writestack(agc, agv);
-	//fn_index_stack(st_a);
 	if (!st_a || fn_checkduplicate(st_a))
 	{
 		fn_freestack(&st_a);

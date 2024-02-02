@@ -6,7 +6,7 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/25 13:18:39 by honguyen          #+#    #+#              #
-#    Updated: 2024/01/31 20:53:25 by honguyen         ###   ########.fr        #
+#    Updated: 2024/02/02 10:54:17 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFTA = ../libft/libft.a
 
 SRC_PS = 0_push_swap.c 
 SRC_BONUS = 0_checker.c 
-SRC_FN = 1_write_stack.c  2_sort.c 3_optimal_rotation.c 3_apply_rotation.c \
+SRC_FN = 1_write_stack.c 1_set_index.c  2_sort.c 3_optimal_rotation.c 3_apply_rotation.c \
 		4_check_utils.c 4_free_utils.c 5_basic_moves_1.c 5_basic_moves_2.c \
 		5_basic_moves_3.c 5_stack_utils_1.c 5_stack_utils_2.c 
 

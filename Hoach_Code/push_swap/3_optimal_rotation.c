@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   3_optimal_rotation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:49:06 by honguyen          #+#    #+#             */
-/*   Updated: 2024/02/01 23:25:25 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/02/02 09:39:33 by honguyen         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -36,7 +36,7 @@ int	fn_rrr_pa(t_stack *a, t_stack *b, int nbr)
 	i = 0;
 	if (fn_find_loc_a(a, nbr))
 		i = fn_size(a) - fn_find_loc_a(a, nbr);
-	if ((i < (fn_size(b) - fn_find_loc(b, nbr))) 
+	if ((i < (fn_size(b) - fn_find_loc(b, nbr)))
 		&& fn_find_loc(b, nbr))
 		i = fn_size(b) - fn_find_loc(b, nbr);
 	return (i);
