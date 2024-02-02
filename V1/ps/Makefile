@@ -6,7 +6,7 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/25 13:18:39 by honguyen          #+#    #+#              #
-#    Updated: 2024/02/02 16:27:35 by honguyen         ###   ########.fr        #
+#    Updated: 2024/02/02 11:34:54 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 LIBFTA = ./libft/libft.a
-HEADERS = ps/push_swap.h
 
 SRC_PS = ps/0_push_swap.c 
 SRC_BONUS = ps/0_checker.c 
@@ -29,8 +28,8 @@ OBJ_PS = ${SRC_PS:.c=.o}
 OBJ_BONUS = ${SRC_BONUS:.c=.o}
 OBJ_FN = ${SRC_FN:.c=.o}
 
-%.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+.c.o:
+	${CC} -c $< -o ${<:.c=.o}
 
 $(NAME): $(OBJ_PS) $(OBJ_FN)
 	make -C ./libft
